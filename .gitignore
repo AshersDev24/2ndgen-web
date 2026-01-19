@@ -1,0 +1,34 @@
+# env files
+.env
+.env.*
+!.env.example
+
+# Laravel
+api/vendor/
+api/node_modules/
+api/storage/*.key
+api/storage/framework/
+api/storage/logs/
+api/bootstrap/cache/
+api/.phpunit.result.cache
+
+# Docker volumes (safety)
+infra/mysql/.data/
+
+# Next.js (future)
+web/node_modules/
+web/.next/
+web/out/
+web/.turbo/
+web/.env
+web/.env.*
+web/.vercel
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# misc
+*.log
