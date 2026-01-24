@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: 2ndgen-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: 2ndgen
+      POSTGRES_USER: 2ndgen
+      POSTGRES_PASSWORD: 2ndgen_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - 2ndgen_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U 2ndgen -d 2ndgen -h 127.0.0.1 -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  2ndgen_postgres_data:

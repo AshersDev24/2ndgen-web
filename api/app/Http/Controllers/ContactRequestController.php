@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactRequest;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ContactRequestController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:255'],
-            'subject' => ['nullable', 'string', 'max:255'],
+            'subject' => ['nullable', 'string', 'max:180'],
             'message' => ['required', 'string', 'max:5000'],
         ]);
 
@@ -26,7 +25,8 @@ class ContactRequestController extends Controller
         ]);
 
         return response()->json([
-            'data' => $contactRequest,
+            'ok' => true,
+            'id' => $contactRequest->id,
         ], 201);
     }
 }
