@@ -15,7 +15,7 @@ services:
   api:
     image: 2ndgen_api:latest
     build:
-      context: ./web/api
+      context: ./api
     container_name: 2ndgen_api
     restart: unless-stopped
     env_file:
@@ -52,8 +52,7 @@ services:
   web:
     image: 2ndgen_web:latest
     build:
-      context: ./web/web
-      dockerfile: ../Dockerfile
+      context: ./web
     container_name: 2ndgen_web
     restart: unless-stopped
     env_file:
