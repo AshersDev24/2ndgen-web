@@ -14,7 +14,16 @@ services:
     volumes:
       - 2ndgen_mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot_password"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "127.0.0.1",
+          "-uroot",
+          "-proot_password",
+        ]
       interval: 5s
       timeout: 5s
       retries: 20

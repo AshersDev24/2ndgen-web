@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #000000;
+  --fg: #f4f4f5;
+  --gold: #b68b4b;
+  --gold-soft: rgba(182, 139, 75, 0.25);
+  --slate: #4d574e;
+  --slate-deep: #303531;
+  --ink: #202221;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family:
+    var(--font-body),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont;
+}
+
+.font-display {
+  font-family:
+    var(--font-display),
+    var(--font-body),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont;
+}

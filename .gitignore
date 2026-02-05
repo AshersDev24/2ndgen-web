@@ -1,34 +1,34 @@
-# env files
+# env
 .env
 .env.*
-!.env.example
+**/.env
+**/.env.*
 
-# Laravel
-api/vendor/
-api/node_modules/
-api/storage/*.key
-api/storage/framework/
-api/storage/logs/
-api/bootstrap/cache/
-api/.phpunit.result.cache
+# node
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
 
-# Docker volumes (safety)
-infra/mysql/.data/
-
-# Next.js (future)
-web/node_modules/
-web/.next/
-web/out/
-web/.turbo/
-web/.env
-web/.env.*
-web/.vercel
-
-# OS / editor
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+# php
+**/vendor/
+**/storage/logs/
+**/bootstrap/cache/
 
 # misc
-*.log
+.DS_Store
+
+# repo workflow files
+.rsyncignore
+**/.rsyncignore
+
+# Laravel runtime
+api/storage/**
+!api/storage/.gitignore
+api/bootstrap/cache/**
+!api/bootstrap/cache/.gitignore
+
+# Next runtime
+web/.next/**
+web/out/**
+web/.turbo/**
