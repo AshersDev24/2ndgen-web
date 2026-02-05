@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ContactRequestController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SubscribeController;
+use App\Http\Middleware\ValidateTurnstile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,9 @@ Route::get('/health', function () {
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
-Route::post('/contact', [ContactRequestController::class, 'store']);
+
+Route::post('/contact', [ContactRequestController::class, 'store'])
+    ->middleware(['throttle:contact', ValidateTurnstile::class]);
+
+Route::post('/subscribe', [SubscribeController::class, 'store'])
+    ->middleware(['throttle:subscribe', ValidateTurnstile::class]);

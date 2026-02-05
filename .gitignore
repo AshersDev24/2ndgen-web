@@ -17,3 +17,18 @@
 
 # misc
 .DS_Store
+
+# repo workflow files
+.rsyncignore
+**/.rsyncignore
+
+# Laravel runtime
+api/storage/**
+!api/storage/.gitignore
+api/bootstrap/cache/**
+!api/bootstrap/cache/.gitignore
+
+# Next runtime
+web/.next/**
+web/out/**
+web/.turbo/**
