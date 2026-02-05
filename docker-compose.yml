@@ -1,0 +1,69 @@
+services:
+  db:
+    image: postgres:16
+    container_name: 2ndgen_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - edge
+
+  api:
+    image: 2ndgen_api:latest
+    build:
+      context: ./web/api
+    container_name: 2ndgen_api
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - edge
+
+  api_nginx:
+    image: 2ndgen_api_nginx:latest
+    build:
+      context: ./api/nginx
+    container_name: 2ndgen_api_nginx
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - edge
+
+  queue:
+    image: 2ndgen_api:latest
+    container_name: 2ndgen_queue
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - api
+    command: ["php","artisan","queue:work","--sleep=1","--tries=3","--timeout=30"]
+    networks:
+      - edge
+
+  web:
+    image: 2ndgen_web:latest
+    build:
+      context: ./web/web
+      dockerfile: ../Dockerfile
+    container_name: 2ndgen_web
+    restart: unless-stopped
+    env_file:
+      - .env.web
+    networks:
+      - edge
+
+networks:
+  edge:
+    external: true
+
+volumes:
+  db_data:
