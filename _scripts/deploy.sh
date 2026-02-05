@@ -6,7 +6,7 @@ cd /srv/srv/2ndgen
 if [ -d .git ]; then
   git fetch origin main
   git reset --hard origin/main
-  git clean -ffdx
+  git clean -ffdx -e .env -e .env.web -e web/.env.production
 fi
 
 docker compose up -d --build api api_nginx queue web
