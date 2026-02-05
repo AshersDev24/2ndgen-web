@@ -32,3 +32,7 @@ api/bootstrap/cache/**
 web/.next/**
 web/out/**
 web/.turbo/**
+
+# Windows downloaded-file metadata (NTFS ADS) that sometimes shows up in WSL
+*:Zone.Identifier
+*Zone.Identifier
